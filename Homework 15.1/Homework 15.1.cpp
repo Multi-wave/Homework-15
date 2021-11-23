@@ -1,23 +1,24 @@
 ﻿#include <iostream>
 
-int main()
-{
-    int mass[10] = {-2,1,-3,4,-1,2,1,-5,4,-3};
-    int maxInd = 9;
+int main() {
+    int mass[10] = { -2,1,-3,4,-1,2,1,-5,4,-3 };
+    int temp = mass[0];
+    int sum = 0;
     int minInd = 0;
-    int max = 0;
+    int maxInd = 0;
+    int minusPos = -1;
     for (int i = 0; i < 10; ++i) {
-        for (int j = i + 1; j < 9; ++j) {
-            int temp = 0;
-            for (int k = i; k <= j; ++k) {
-                temp += mass[k];
-            }
-            if (temp > max) {
-                max = temp;
-                maxInd = j;
-                minInd = i;
-            }
+        sum += mass[i];
+        if (sum > temp) {
+            temp = sum;
+            minInd = minusPos + 1;
+            maxInd = i;
+        }
+        if (sum < 0) {
+            sum = 0;
+            minusPos = i;
         }
     }
-    std::cout << "Max =" << max << ", i =" << minInd << ", j =" << maxInd;
+    std::cout << "i =" << minInd << ", j =" << maxInd;
 }
+
